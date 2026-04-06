@@ -1,159 +1,80 @@
-# Fullstack Test Application
+# Fullstack Test Project
 
-A fullstack application with a NestJS backend and a Nuxt frontend. This project demonstrates a modern fullstack setup with authentication, database integration, and a responsive UI.
+Это полноценный fullstack проект, включающий backend на NestJS и frontend на Nuxt.js. Проект использует PostgreSQL в качестве базы данных и Docker для контейнеризации.
 
-## Tech Stack
-
-### Backend
-
-- **Framework**: NestJS 11 with TypeScript
-- **Database**: PostgreSQL 16 with Prisma ORM 7.0.1
-- **Authentication**: JWT-based authentication
-- **Prisma Adapter**: @prisma/adapter-pg (node-postgres driver)
-
-### Frontend
-
-- **Framework**: Nuxt 3 with TypeScript
-- **UI**: Ant Design Vue
-- **State Management**: Pinia
-- **Authentication**: JWT-based authentication with API integration
-
-## Project Structure
+## Структура проекта
 
 ```
 fullstack-test/
-├── backend/
-│   ├── prisma/              # Prisma schema and migrations
-│   ├── src/                 # NestJS source code
-│   ├── docker-compose.yml   # PostgreSQL
-│   └── ...
-├── frontend/
-│   ├── components/          # Vue components
-│   ├── pages/               # Application pages
-│   ├── stores/              # Pinia stores
-│   ├── nuxt.config.ts       # Nuxt configuration
-│   └── ...
-└── README.md                # This file
+├── backend/          # Backend на NestJS
+├── frontend/         # Frontend на Nuxt.js
+├── docker-compose.yml # Конфигурация Docker
+└── README.md         # Этот файл
 ```
 
-## Prerequisites
+## Требования
 
-- Node.js (v18 or higher)
-- Docker (for running PostgreSQL)
-- pnpm (recommended, but npm or yarn can also be used)
+- Docker и Docker Compose
+- Node.js (если запускаете без Docker)
 
-## Setup Instructions
+## Установка и запуск
 
-### 1. Clone the Repository
+### С Docker (рекомендуется)
 
 ```bash
 git clone https://github.com/Nevermind192/fullstack-test
 cd fullstack-test
+docker-compose up --build
 ```
 
-### 2. Setup Backend
+### Без Docker
 
-#### Install Dependencies
+#### Backend
 
-```bash
-cd backend
-pnpm install
-```
+1. Перейдите в директорию `backend`:
 
-#### Environment Variables
+   ```bash
+   cd backend
+   ```
 
-Copy `.env.example` to `.env` and adjust as needed:
+2. Установите зависимости:
 
-```bash
-cp .env.example .env
-```
+   ```bash
+   npm install
+   ```
 
-#### Start Infrastructure
+3. Создайте `.env` файл на основе `.env.example` и настройте переменные окружения.
 
-```bash
-docker-compose up -d
-```
+4. Запустите проект:
 
-#### Run Migrations
+   ```bash
+   npm run dev
+   ```
 
-```bash
-npx prisma migrate dev --name init
-```
+#### Frontend
 
-### 3. Setup Frontend
+1. Перейдите в директорию `frontend`:
 
-#### Install Dependencies
+   ```bash
+   cd frontend
+   ```
 
-```bash
-cd ../frontend
-pnpm install
-```
+2. Установите зависимости:
 
-### 4. Run the Application
+   ```bash
+   npm install
+   ```
 
-#### Start Backend
+3. Запустите проект:
 
-```bash
-cd ../backend
-pnpm dev
-```
+   ```bash
+   npm run dev
+   ```
 
-The backend API will be available at `http://localhost:3000`.
+## Docker
 
-#### Start Frontend
+Проект поддерживает Docker и Docker Compose для простого развертывания. Все сервисы (PostgreSQL, backend, frontend) запускаются в отдельных контейнерах.
 
-```bash
-cd ../frontend
-pnpm dev
-```
+## Лицензия
 
-The frontend application will be available at `http://localhost:3001`.
-
-## Common Commands
-
-### Backend
-
-```bash
-# Generate Prisma client
-npx prisma generate
-
-# Create a new migration
-npx prisma migrate dev --name <migration_name>
-
-# Apply migrations (production)
-npx prisma migrate deploy
-
-# Open Prisma Studio (GUI)
-npx prisma studio
-
-# Run tests
-pnpm test
-
-# Type checking
-pnpm typecheck
-```
-
-### Frontend
-
-```bash
-# Run development server
-pnpm dev
-
-# Build for production
-pnpm build
-
-# Preview production build
-pnpm preview
-```
-
-## Features
-
-- User authentication (login, logout, profile)
-- Admin dashboard
-- JWT-based authentication
-- PostgreSQL database
-- Responsive UI with Ant Design Vue and Nuxt3
-
-## License
-
-This project is licensed under the MIT License.
+Проект распространяется под лицензией MIT License.
